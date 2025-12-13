@@ -17,10 +17,23 @@ These scripts install a small set of common utilities on Ubuntu with minimal use
    ```bash
    bash ./install_cockpit.sh
    ```
-4. To install everything at once, use the wrapper:
+4. To install everything at once, use the wrapper **after confirming all installer scripts are present**:
    ```bash
    bash ./install_all.sh
    ```
+   The wrapper expects all of the individual installer scripts (the `install_*.sh` files) to live in the **same directory** as
+   `install_all.sh`. If you download files individually, place them in one folder so the wrapper can find each installer.
+   Missing files will cause the wrapper to exit early with "file not found" errors.
+
+### Using `install_all.sh` safely
+If you want the "install everything" path, double-check the following before running the wrapper:
+1. All installer scripts are present: `install_cloudflared.sh`, `install_cockpit.sh`, `install_webdav.sh`, and `install_rustdesk.sh`.
+2. They live in the **same directory** as `install_all.sh` (the wrapper sources them by relative path).
+3. They are executable: run `chmod +x install_*.sh` if in doubt.
+4. You are running the wrapper from that directory: e.g., `cd ~/Ubuntu-Server-Setup && bash ./install_all.sh`.
+
+If you move the scripts elsewhere, keep the set together; the wrapper does not search other directories or subfolders for
+missing installers.
 
 ## What each script does
 ### `install_cloudflared.sh`
